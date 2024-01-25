@@ -11,7 +11,7 @@ def home():
 @app.route('/weather', methods=['GET'])
 def get_weather_data():
     # URL do seu cluster OpenSearch
-    url = "http://localhost:9200/weather-data/_doc/1"
+    url = "http://localhost:9200/weather-data/_search"
 
     # Fazendo a requisição GET para o OpenSearch
     response = requests.get(url)
