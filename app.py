@@ -33,7 +33,8 @@ def post_weather_data():
         "wind-speed": 5.2,
         "wind-direction": "SSE",
         "pressure": 1013,
-        "rainfall-rate": 0
+        "rainfall-rate": 0.5,
+        "observation": "cloudy"
     }
 
     # URL do seu cluster OpenSearch
