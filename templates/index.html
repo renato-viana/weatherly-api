@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Data</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      #weather-data_wrapper {
+        width: 90%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Weather Data</h1>
+    <table
+      id="weather-data"
+      class="display responsive nowrap"
+      style="width: 100%"
+    >
+      <caption>
+        Comprehensive Results of Weather Data Analysis
+      </caption>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Station ID</th>
+          <th>Temperature</th>
+          <th>Wind Speed</th>
+          <th>Wind Direction</th>
+          <th>Pressure</th>
+          <th>Rainfall Rate</th>
+          <th>Observation</th>
+        </tr>
+      </thead>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.get("/weather", function (data) {
+          var weatherData = data._source;
+          $("#weather-data").DataTable({
+            responsive: true,
+            data: [weatherData],
+            columns: [
+              { data: "timestamp" },
+              { data: "station-id" },
+              { data: "temperature" },
+              { data: "wind-speed" },
+              { data: "wind-direction" },
+              { data: "pressure" },
+              { data: "rainfall-rate" },
+              { data: "observation" },
+            ],
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
